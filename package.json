@@ -1,0 +1,19 @@
+{
+  "name": "blogium-service",
+  "version": "1.0.0",
+  "description": "medium xml to json",
+  "main": "index.js",
+  "author": "@atilafassina",
+  "license": "MIT",
+  "scripts": {
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "devDependencies": {
+    "micro-dev": "^1.1.2"
+  },
+  "dependencies": {
+    "micro": "^8.0.1",
+    "simple-rss": "^1.0.0"
+  }
+}
