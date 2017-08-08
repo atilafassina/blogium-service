@@ -10,6 +10,12 @@
     "start": "micro",
     "dev": "micro-dev"
   },
+  "now": {
+    "name": "blogium",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
   "xo": {
     "spaces": 2,
     "semicolon": false
