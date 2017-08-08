@@ -6,11 +6,17 @@
   "author": "@atilafassina",
   "license": "MIT",
   "scripts": {
+    "test": "xo",
     "start": "micro",
     "dev": "micro-dev"
   },
+  "xo": {
+    "spaces": 2,
+    "semicolon": false
+  },
   "devDependencies": {
-    "micro-dev": "^1.1.2"
+    "micro-dev": "^1.1.2",
+    "xo": "^0.18.2"
   },
   "dependencies": {
     "micro": "^8.0.1",
