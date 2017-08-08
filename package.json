@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "micro": "^8.0.1",
+    "microrouter": "^2.2.2",
     "simple-rss": "^1.0.0"
   }
 }

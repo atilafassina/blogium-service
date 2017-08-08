@@ -1,8 +1,10 @@
+const { send, text } = require('micro')
+const { router, get } = require('microrouter')
 const rss = require('simple-rss')
 
-async function getPosts () {
-  const mediumList = await rss('https://medium.com/feed/@atilafassina')
-  const dataCleanup = sanitizePostList(mediumList)
+async function getPosts (user = 'medium') {
+  const mediumList = await rss(`https://medium.com/feed/@${user}`)
+  const dataCleanup = await sanitizePostList(mediumList)
   return onlyPosts(dataCleanup)
 }
 
@@ -21,6 +23,14 @@ function onlyPosts (list) {
   return list.filter( ({categories}) => categories.length > 0)
 }
 
-module.exports = function (req, res) {
-  return getPosts()
+const posts = async (req, res) => {
+  const posts = await getPosts(req.params.user)
+  return send(res, 200, posts)
 }
+
+const notfound = (req, res) => send(res, 404, 'Not found route')
+
+module.exports = router(
+  get('/:user', posts),
+  get('/*', notfound)
+)
