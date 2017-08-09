@@ -24,7 +24,10 @@ function onlyPosts(list) {
 }
 
 const posts = async (req, res) => {
-	const posts = await getPosts(req.params.user)
+  const posts = await getPosts(req.params.user)
+  
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
 	return send(res, 200, posts)
 }
 

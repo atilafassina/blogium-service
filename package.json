@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "xo",
-    "start": "micro",
+    "start": "micro -p 8080",
     "dev": "micro-dev"
   },
   "now": {

@@ -1,0 +1,5 @@
+{
+  "id": "api",
+  "port": 8080,
+  "customDomains": ["blogium.wedeploy.io"]
+}
