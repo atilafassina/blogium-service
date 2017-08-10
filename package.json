@@ -6,7 +6,8 @@
   "author": "@atilafassina",
   "license": "MIT",
   "scripts": {
-    "test": "xo && ava",
+    "test": "xo && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "micro -p 8080",
     "dev": "micro-dev"
   },
@@ -22,7 +23,9 @@
   },
   "devDependencies": {
     "ava": "^0.21.0",
+    "coveralls": "^2.13.1",
     "micro-dev": "^1.1.2",
+    "nyc": "^11.1.0",
     "xo": "^0.18.2"
   },
   "dependencies": {
