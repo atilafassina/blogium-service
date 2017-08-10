@@ -6,7 +6,7 @@
   "author": "@atilafassina",
   "license": "MIT",
   "scripts": {
-    "test": "xo",
+    "test": "xo && ava",
     "start": "micro -p 8080",
     "dev": "micro-dev"
   },
@@ -21,6 +21,7 @@
     "semicolon": false
   },
   "devDependencies": {
+    "ava": "^0.21.0",
     "micro-dev": "^1.1.2",
     "xo": "^0.18.2"
   },

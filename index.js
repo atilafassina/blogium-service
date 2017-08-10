@@ -13,8 +13,8 @@ function sanitizePostList(jsonFeed) {
 		return {
 			title,
 			date,
-			categories,
-			link
+			link,
+			categories
 		}
 	})
 }
@@ -24,9 +24,9 @@ function onlyPosts(list) {
 }
 
 const posts = async (req, res) => {
-  const posts = await getPosts(req.params.user)
-  
-  res.setHeader('Access-Control-Allow-Origin', '*')
+	const posts = await getPosts(req.params.user)
+
+	res.setHeader('Access-Control-Allow-Origin', '*')
 
 	return send(res, 200, posts)
 }
@@ -37,3 +37,9 @@ module.exports = router(
   get('/:user', posts),
   get('/*', notfound)
 )
+
+module.exports.privates = {
+	_getPosts: getPosts,
+	_sanitizePostList: sanitizePostList,
+	_onlyPosts: onlyPosts
+}
