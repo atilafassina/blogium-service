@@ -1,6 +1,7 @@
 const {send} = require('micro')
 const {router, get} = require('microrouter')
 const rss = require('simple-rss')
+const {error404} = require('./pages/404html')
 
 async function getPosts(user = 'medium') {
 	const mediumList = await rss(`https://medium.com/feed/@${user}`)
@@ -31,7 +32,7 @@ const posts = async (req, res) => {
 	return send(res, 200, posts)
 }
 
-const notfound = (req, res) => send(res, 404, 'Not found route')
+const notfound = (req, res) => send(res, 404, error404)
 
 module.exports = router(
   get('/:user', posts),
