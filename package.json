@@ -11,14 +11,8 @@
     "start": "micro -p 8080",
     "dev": "micro-dev"
   },
-  "now": {
-    "name": "blogium",
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
   "xo": {
-    "spaces": 2,
+    "space": true,
     "semicolon": false
   },
   "devDependencies": {
