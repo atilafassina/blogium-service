@@ -1,25 +1,24 @@
-const error404 = `<!DOCTYPE html>
-<html lang="en">
+const error404 = `<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Blogium-Service / Not found route</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,700">
 	<style>
 		body {
 			background: #0e141a;
-			font-family: 'Open Sans', sans-serif;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 		}
 
 		.container {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+			align-items: center;
 			text-align: center;
+			height: 100%;
 		}
 
 		h1 {
-			font-size: 72px;
+			font-size: 4.5rem;
 			font-weight: 700;
 			color: #fff;
 			margin: 0;
@@ -39,7 +38,7 @@ const error404 = `<!DOCTYPE html>
 
 		.logo {
 			position: absolute;
-			bottom: 20px;
+			bottom: 1.2rem;
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
@@ -48,7 +47,7 @@ const error404 = `<!DOCTYPE html>
 <body>
 	<div class="container">
 		<h1>Error 404</h1>
-		
+
 		<div class="container-inner">
 			<h2>Not found route</h2>
 			<h3>Try writing your medium username on the <em>URL</em</h3>
