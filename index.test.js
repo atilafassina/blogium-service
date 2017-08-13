@@ -1,5 +1,8 @@
+import micro from 'micro'
+import listen from 'test-listen'
 import test from 'ava'
-import {privates} from './'
+import request from 'request-promise'
+import blogium, {privates} from './'
 
 test('filter comments out of feed', t => {
   const mockArray = [
@@ -36,4 +39,13 @@ test('check sanitizePostList', t => {
   const result = privates._sanitizePostList(mockArray)
 
   t.true(JSON.stringify(result) === JSON.stringify(expectedArray), 'json is properly sanitized')
+})
+
+test('test root request', async t => {
+  const service = micro(blogium)
+  const url = await listen(service)
+  const body = await request(`${url}/atilafassina`)
+
+  t.is(Array.isArray(JSON.parse(body)), true)
+  service.close()
 })
