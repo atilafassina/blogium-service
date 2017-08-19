@@ -1,5 +1,5 @@
 <div align="center">
-<img width="200" src="blogium.png" alt="blogium logo" />
+<img width="200" src="blogium-service.png" alt="blogium-service logo" />
 <h1>Blogium Service</h1>
 <div>
 <b>turn <a hreft="https://medium.com">Medium</a> RSS feed into lean <code>json</code> objects</b>
