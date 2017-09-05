@@ -1,12 +1,14 @@
 const {send} = require('micro')
 const {router, get} = require('microrouter')
 const rss = require('simple-rss')
-const {error404} = require('./pages/404html')
+const html = require('./pages/error')
 
-async function getPosts(user = 'medium') {
-  const mediumList = await rss(`https://medium.com/feed/@${user}`)
-  const dataCleanup = await sanitizePostList(mediumList)
-  return onlyPosts(dataCleanup)
+function errorThrow (method, errorJSON, res) {
+  if (method === 'GET') {
+    return send(res, errorJSON.statusCode, html(errorJSON))
+  } else {
+    return send(res, errorJSON.statusCode, errorJSON)
+  }
 }
 
 function sanitizePostList(jsonFeed) {
@@ -24,15 +26,42 @@ function onlyPosts(list) {
   return list.filter(({categories}) => categories.length > 0)
 }
 
-const posts = async (req, res) => {
-  const posts = await getPosts(req.params.user)
-
-  res.setHeader('Access-Control-Allow-Origin', '*')
-
-  return send(res, 200, posts)
+async function getPosts(user = 'medium') {
+  try {
+    const mediumList = await rss(`https://medium.com/feed/@${user}`)
+    const dataCleanup = await sanitizePostList(mediumList)
+   
+    return onlyPosts(dataCleanup)
+  } catch(ex) {
+    throw new Error(ex)
+  }
 }
 
-const notfound = (req, res) => send(res, 404, error404)
+const posts = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+ 
+  try {
+    const posts = await getPosts(req.params.user)
+    
+    return send(res, 200, posts)
+  } catch (ex) {
+    const error500 = {
+      statusCode: 500,
+      msg: 'unable to complete request'
+    }
+
+    errorThrow(req.method, error500, res)
+  }
+}
+
+const notfound = async (req, res) => {
+  const error404 = {
+    statusCode: 404,
+    msg: 'Endpoint not found'
+  }
+
+  errorThrow(req.method, error404, res)
+}
 
 module.exports = router(
   get('/:user', posts),

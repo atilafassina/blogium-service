@@ -1,0 +1,12 @@
+{
+  "name": "with-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "atilafassina",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.4.2",
+    "vue-cli": "^2.8.2",
+    "vuejs": "^1.0.29"
+  }
+}
