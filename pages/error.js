@@ -47,7 +47,7 @@ module.exports = ({msg, statusCode}) => (`
   <body>
     <div class="container">
       <img src="/blogium-service.png" alt="Blogium Logo" />
-      <h1>Error ${statusCode}</h1>
+      <h1>${statusCode}</h1>
 
       <div class="container-inner">
         <h2>${msg}</h2>

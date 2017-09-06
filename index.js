@@ -57,7 +57,7 @@ const posts = async (req, res) => {
 const notfound = async (req, res) => {
   const error404 = {
     statusCode: 404,
-    msg: 'Endpoint not found'
+    msg: 'endpoint not found'
   }
 
   errorThrow(req.method, error404, res)
