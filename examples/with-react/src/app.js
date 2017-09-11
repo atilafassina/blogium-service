@@ -34,6 +34,19 @@ const Input = styled.input`
   border-bottom: solid 2px black;
 `
 
+const Controller = styled.nav`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  margin-top: 2.5rem;
+
+  &::after {
+    content: 'type a Medium username ☝';
+  }
+`
+
 export default class App extends PureComponent {
   constructor () {
     super ()
@@ -44,7 +57,6 @@ export default class App extends PureComponent {
     this.setState( () => ({
       user: element.value
     }))
-    console.log(element.value)
   }, 250)
 
   render () {
@@ -55,12 +67,12 @@ export default class App extends PureComponent {
             Blogium-service w/ React
           </Title>
         </Header>
-        <nav>
+        <Controller>
           <Input type='text' onChange={(event) => {
             event.persist()
             this.changeHandler(event.currentTarget)
           }}/>
-        </nav>
+        </Controller>
         <Posts user={this.state.user}/>
       </div>
     )

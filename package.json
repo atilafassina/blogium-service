@@ -13,11 +13,14 @@
   },
   "xo": {
     "space": true,
-    "semicolon": false
+    "semicolon": false,
+    "ignores": ["!./examples/*"]
   },
   "devDependencies": {
     "ava": "^0.22.0",
     "coveralls": "^2.13.1",
+    "eslint-config-xo-react": "^0.13.0",
+    "eslint-plugin-react": "^7.3.0",
     "micro-dev": "^1.1.2",
     "nyc": "^11.1.0",
     "request-promise": "^4.2.1",

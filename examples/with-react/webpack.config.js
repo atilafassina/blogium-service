@@ -1,5 +1,5 @@
-var webpack = require('webpack')
-var path = require('path')
+const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   stats: 'errors-only',
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000
   }

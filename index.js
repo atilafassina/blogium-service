@@ -3,12 +3,11 @@ const {router, get} = require('microrouter')
 const rss = require('simple-rss')
 const html = require('./pages/error')
 
-function errorThrow (method, errorJSON, res) {
+function errorThrow(method, errorJSON, res) {
   if (method === 'GET') {
     return send(res, errorJSON.statusCode, html(errorJSON))
-  } else {
-    return send(res, errorJSON.statusCode, errorJSON)
   }
+  return send(res, errorJSON.statusCode, errorJSON)
 }
 
 function sanitizePostList(jsonFeed) {
@@ -30,21 +29,21 @@ async function getPosts(user = 'medium') {
   try {
     const mediumList = await rss(`https://medium.com/feed/@${user}`)
     const dataCleanup = await sanitizePostList(mediumList)
-   
+
     return onlyPosts(dataCleanup)
-  } catch(ex) {
-    throw new Error(ex)
+  } catch (err) {
+    throw new Error(err)
   }
 }
 
 const posts = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
- 
+
   try {
     const posts = await getPosts(req.params.user)
-    
+
     return send(res, 200, posts)
-  } catch (ex) {
+  } catch (err) {
     const error500 = {
       statusCode: 500,
       msg: 'unable to complete request'
