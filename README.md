@@ -11,6 +11,8 @@
 
 ## Working instance 🛰
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/atilafassina/blogium-service.svg)](https://greenkeeper.io/)
+
 ```
 https://blogium.wedeploy.io/{{medium-username}}
 ```
