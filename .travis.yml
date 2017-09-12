@@ -4,3 +4,4 @@ after_success: yarn coverage
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
