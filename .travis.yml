@@ -1,8 +1,10 @@
 language: node_js
 node_js: node
-before_install: yarn global add greenkeeper-lockfile@1
+before_install:
+- npm install -g npm@5
+- npm install -g greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
-after_success: yarn coverage
+after_success: npm run coverage
 after_script: greenkeeper-lockfile-upload
 branches:
   only:
