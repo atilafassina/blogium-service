@@ -1,12 +1,8 @@
 const {send} = require('micro')
 const {router, get} = require('microrouter')
 const rss = require('simple-rss')
-const html = require('./pages/error')
 
 function errorThrow (method, errorJSON, res) {
-  // if (method === 'GET') {
-  //   return send(res, errorJSON.statusCode, html(errorJSON))
-  // }
   return send(res, errorJSON.statusCode, errorJSON)
 }
 
@@ -71,5 +67,4 @@ module.exports.privates = {
   _getPosts: getPosts,
   _sanitizePostList: sanitizePostList,
   _onlyPosts: onlyPosts,
-  _errorThrow: errorThrow
 }

@@ -20,7 +20,8 @@
   },
   "nyc": {
     "exclude": [
-      "examples/**/*.js"
+      "examples/**/*.js",
+      "**/*.test.js"
     ]
   },
   "devDependencies": {
