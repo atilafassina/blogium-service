@@ -14,7 +14,9 @@
   "xo": {
     "space": true,
     "semicolon": false,
-    "ignores": ["!./examples/*"]
+    "ignores": [
+      "!./examples/*"
+    ]
   },
   "nyc": {
     "exclude": [

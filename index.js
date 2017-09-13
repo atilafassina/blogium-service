@@ -3,14 +3,14 @@ const {router, get} = require('microrouter')
 const rss = require('simple-rss')
 const html = require('./pages/error')
 
-function errorThrow(method, errorJSON, res) {
-  if (method === 'GET') {
-    return send(res, errorJSON.statusCode, html(errorJSON))
-  }
+function errorThrow (method, errorJSON, res) {
+  // if (method === 'GET') {
+  //   return send(res, errorJSON.statusCode, html(errorJSON))
+  // }
   return send(res, errorJSON.statusCode, errorJSON)
 }
 
-function sanitizePostList(jsonFeed) {
+function sanitizePostList (jsonFeed) {
   return jsonFeed.map(({title, date, categories, link}) => {
     return {
       title,
@@ -21,11 +21,11 @@ function sanitizePostList(jsonFeed) {
   })
 }
 
-function onlyPosts(list) {
+function onlyPosts (list) {
   return list.filter(({categories}) => categories.length > 0)
 }
 
-async function getPosts(user = 'medium') {
+async function getPosts (user = 'medium') {
   try {
     const mediumList = await rss(`https://medium.com/feed/@${user}`)
     const dataCleanup = await sanitizePostList(mediumList)
@@ -70,5 +70,6 @@ module.exports = router(
 module.exports.privates = {
   _getPosts: getPosts,
   _sanitizePostList: sanitizePostList,
-  _onlyPosts: onlyPosts
+  _onlyPosts: onlyPosts,
+  _errorThrow: errorThrow
 }
