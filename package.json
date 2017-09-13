@@ -16,6 +16,11 @@
     "semicolon": false,
     "ignores": ["!./examples/*"]
   },
+  "nyc": {
+    "exclude": [
+      "examples/**/*.js"
+    ]
+  },
   "devDependencies": {
     "ava": "^0.22.0",
     "coveralls": "^2.13.1",
