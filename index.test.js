@@ -41,11 +41,37 @@ test('check sanitizePostList', t => {
   t.true(JSON.stringify(result) === JSON.stringify(expectedArray), 'json is properly sanitized')
 })
 
-test('test root request', async t => {
+test('test user request', async t => {
   const service = micro(blogium)
   const url = await listen(service)
   const body = await request(`${url}/atilafassina`)
 
   t.is(Array.isArray(JSON.parse(body)), true)
   service.close()
+})
+
+test('test 404 request', async t => {
+  const service = micro(blogium)
+  const url = await listen(service)
+  try {
+    const body = await request(`${url}`)
+    t.is(JSON.parse(body).statusCode, 404)
+  } catch (err) {
+    t.is(err.statusCode, 404)
+  } finally {
+    service.close()    
+  }
+})
+
+test('test 500 request', async t => {
+  const service = micro(blogium)
+  const url = await listen(service)
+  try {
+    const body = await request(`${url}/attilafassina`)
+    t.is(err.statusCode, 500)
+  } catch (err) {
+    t.is(err.statusCode, 500)
+  } finally {
+    service.close()
+  }
 })

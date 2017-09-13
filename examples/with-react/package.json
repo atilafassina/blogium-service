@@ -1,0 +1,23 @@
+{
+  "name": "with-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "if [ ! -d \"dist\" ]; then mkdir dist; fi && cp ./src/index.html ./dist/index.html",
+    "build": "webpack-dev-server",
+    "dev": "yarn build -- --watch"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.2",
+    "webpack": "^3.5.6"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.7.1"
+  }
+}
