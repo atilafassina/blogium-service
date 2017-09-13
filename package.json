@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "xo && nyc ava",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "start": "micro -p 8080",
     "dev": "micro-dev"
   },
@@ -36,6 +36,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "codecov": "^2.3.0",
     "micro": "^8.0.1",
     "microrouter": "^2.2.2",
     "simple-rss": "^1.0.0"
