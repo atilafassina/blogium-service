@@ -1,15 +1,5 @@
 {
   "name": "with-vue",
-<<<<<<< HEAD
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "atilafassina",
-  "license": "MIT",
-  "dependencies": {
-    "vue": "^2.4.2",
-    "vue-cli": "^2.8.2",
-    "vuejs": "^1.0.29"
-=======
   "description": "Blogium-Service example with Vue.js",
   "version": "1.0.0",
   "author": "Atila Fassina <hey@atilafassina.com>",
@@ -31,6 +21,5 @@
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
->>>>>>> initial setup for example/with-vue
   }
 }
