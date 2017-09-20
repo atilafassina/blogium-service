@@ -1,20 +1,16 @@
 <template>
+<div>
   <div id="app">
     <img class="logo" src="https://github.com/atilafassina/blogium-service/blob/master/blogium-service.png?raw=true">
     <h1>{{ title }}</h1>
   </div>
+  <ul>
+    <li v-for="post in postList">
+      {{ post.id }}
+    </li>
+  </ul>
+  </div>
 </template>
-
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      title: 'Blogium-Service w/ Vue'
-    }
-  }
-}
-</script>
 
 <style>
 #app {
