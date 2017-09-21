@@ -6,10 +6,18 @@ function errorThrow (method, errorJSON, res) {
   return send(res, errorJSON.statusCode, errorJSON)
 }
 
+function getImage (text) {
+  const regex = /<img[^>]+src="?([^"\s]+)"?[^>]*\/>/g
+  const result = regex.exec(text) 
+  return result ? result[1] : false
+}
+
 function sanitizePostList (jsonFeed) {
-  return jsonFeed.map(({title, date, categories, link}) => {
+  return jsonFeed.map(({title, date, categories, link, description}) => {
+    const image = getImage(description)
     return {
       title,
+      image,      
       date,
       link,
       categories

@@ -23,7 +23,7 @@ test('check sanitizePostList', t => {
     guid: 'https://medium.com/p/foohash',
     author: 'Foobar da Silva',
     thumbnail: '',
-    description: 'mock description',
+    description: '<img src="https://cdn.image.com/url" />',
     content: 'foo content',
     enclosure: [],
     categories: []
@@ -31,13 +31,13 @@ test('check sanitizePostList', t => {
 
   const expectedArray = [{
     title: 'mock title',
+    image: 'https://cdn.image.com/url',
     date: '2022-01-01 17:14:14',
     link: 'https://medium.com/@foo',
     categories: []
   }]
 
   const result = privates._sanitizePostList(mockArray)
-
   t.true(JSON.stringify(result) === JSON.stringify(expectedArray), 'json is properly sanitized')
 })
 
