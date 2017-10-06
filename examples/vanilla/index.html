@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blogium-service vanilla js</title>
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+  
+     header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 30vh;
+      background-color: black;
+    }
+    h1 {
+      color: white;
+    }
+
+    input {
+      font-family: monospace;
+      font-size: 1.5rem;
+      outline: none;
+      border: none;
+      border-bottom: solid 2px black;
+    }
+  
+    nav {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      height: 5rem;
+      margin-top: 2.5rem;
+    }
+    nav::after {
+      content: 'type a Medium username ☝';
+    }
+
+    .container {
+      display: flex;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      list-style: none;
+    }
+  
+    .post {
+      width: 20rem;
+      height: 15rem;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      padding: .5em 0;
+      text-align: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      border: solid 1px black;
+      border-radius: 3px;
+    }
+  
+    .categoriesWrapper {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  
+    .category {
+      font-size: .8rem;
+      font-family: monospace;
+      padding: .2em .3em;
+      margin: .5em;
+      border: solid 1px rgb(230,230,230);
+    }
+    
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+      padding: 0 .2em;
+      transition: color 100ms linear;
+    }
+    
+    a:hover {
+      color: rgb(100,100,100);
+    }
+  </style>
+  <header>
+    <h1>
+      Blogium-service vanilla.js
+    </h1>
+  </header>
+  <nav>
+    <input type="text" />
+  </nav>
+  <article>
+    <ul class="container"></ul>
+  </article>
+
+  <script>
+    function checkHTTPstatus (resp) {
+      if (resp.status === 200) return 200
+      return false
+    }
+    
+    async function getPosts (user) {
+      const resp = await fetch(`https://blogium.wedeploy.io/${user}`)
+      if (resp.status === 200) return resp.json()
+      throw new Error(resp.status)
+    }
+
+    function printCategories (categories) {
+      return categories.map(tag => {
+        return `<li class="category">${tag}</li>`
+      }).join('')
+    }
+
+    function formatDate (dateString) {
+      const date = new Date(dateString)
+      return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`  
+    }
+
+    function writePosts (event) {
+      const user = event ? event.currentTarget.value : 'atilafassina'      
+      const container = document.querySelector('.container')
+      container.innerHTML = ''
+      getPosts(user)
+      .then((postList) => {
+        postList.forEach( post => {
+          container.innerHTML += `
+          <li class="post">
+            <p>${formatDate(post.date)}</p>
+            <a href=${post.link} target="_blank">
+              ${post.title}
+            </a>
+            <ul class="categoriesWrapper">
+              ${printCategories(post.categories)}
+            </ul>
+          </li>
+          `
+        })
+      })
+      .catch(ex => {
+        console.error('something went wrong with the request', ex)
+      })
+    }
+
+    writePosts()
+    document.querySelector('input').addEventListener('blur', writePosts, false)
+  </script>
+</body>
+</html>
