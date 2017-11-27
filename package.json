@@ -25,7 +25,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^0.23.0",
+    "ava": "^0.24.0",
     "coveralls": "^2.13.1",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.3.0",
