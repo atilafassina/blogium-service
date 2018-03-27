@@ -37,9 +37,10 @@
   },
   "dependencies": {
     "codecov": "^3.0.0",
-    "micro": "^8.0.1",
+    "micro": "^9.0.1",
     "microrouter": "^3.0.0",
     "minimist-options": "^3.0.2",
-    "simple-rss": "^1.0.0"
+    "simple-rss": "^1.0.0",
+    "tryit": "^1.0.3"
   }
 }
