@@ -33,7 +33,7 @@
     "nyc": "^11.1.0",
     "request-promise": "^4.2.1",
     "test-listen": "^1.0.2",
-    "xo": "^0.20.0"
+    "xo": "^0.23.0"
   },
   "dependencies": {
     "codecov": "^3.0.0",
