@@ -1,6 +1,6 @@
 {
   "name": "blogium-service",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "medium xml to json",
   "main": "index.js",
   "author": "@atilafassina",
@@ -8,7 +8,7 @@
   "scripts": {
     "test": "xo && nyc ava",
     "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "start": "micro -p 8080",
+    "start": "micro",
     "dev": "micro-dev"
   },
   "xo": {
@@ -37,10 +37,8 @@
   },
   "dependencies": {
     "codecov": "^3.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "micro": "^9.0.1",
-    "microrouter": "^3.0.0",
-    "minimist-options": "^3.0.2",
-    "simple-rss": "^1.0.0",
-    "tryit": "^1.0.3"
+    "microrouter": "^3.0.0"
   }
 }

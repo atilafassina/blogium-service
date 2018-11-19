@@ -1,41 +1,32 @@
+require('isomorphic-fetch')
 const {send} = require('micro')
 const {router, get} = require('microrouter')
-const rss = require('simple-rss')
 
 function errorThrow (method, errorJSON, res) {
   return send(res, errorJSON.statusCode, errorJSON)
 }
 
-function getImage (text) {
-  const regex = /<img[^>]+src="?([^"\s]+)"?[^>]*\/>/g
-  const result = regex.exec(text) 
-  return result ? result[1] : false
-}
-
-function sanitizePostList (jsonFeed) {
-  return jsonFeed.map(({title, date, categories, link, description}) => {
-    const image = getImage(description)
+function sanitize(postsJSON, user) {
+  return Object.values(postsJSON).map(({ title, firstPublishedAt, virtuals, uniqueSlug }) => {
     return {
       title,
-      image,      
-      date,
-      link,
-      categories
+      date: new Date(firstPublishedAt),
+      image: `https://cdn-images-1.medium.com/max/1600/${virtuals.previewImage.imageId}`,
+      link: `https://medium.com/@${user}/${uniqueSlug}`,
+      categories: virtuals.tags.map(tag => tag.name)
     }
   })
 }
 
-function onlyPosts (list) {
-  return list.filter(({categories}) => categories.length > 0)
-}
-
 async function getPosts (user = 'medium') {
   try {
-    const mediumList = await rss(`https://medium.com/feed/@${user}`)
-    const dataCleanup = await sanitizePostList(mediumList)
+    const mediumList = await fetch(`https://medium.com/@${user}/latest?format=json`)
+    const textResponse = await mediumList.text()
+    const fullResponse = JSON.parse(textResponse.replace('])}while(1);</x>' ,''))
 
-    return onlyPosts(dataCleanup)
+    return sanitize(fullResponse.payload.references.Post, user)
   } catch (err) {
+
     throw new Error(err)
   }
 }
@@ -45,7 +36,7 @@ const posts = async (req, res) => {
 
   try {
     const posts = await getPosts(req.params.user)
-
+    console.log(posts)
     return send(res, 200, posts)
   } catch (err) {
     const error500 = {
@@ -72,7 +63,5 @@ module.exports = router(
 )
 
 module.exports.privates = {
-  _getPosts: getPosts,
-  _sanitizePostList: sanitizePostList,
-  _onlyPosts: onlyPosts,
+  _getPosts: getPosts
 }
