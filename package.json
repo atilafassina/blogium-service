@@ -26,19 +26,19 @@
   },
   "devDependencies": {
     "ava": "^0.24.0",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.2",
     "eslint-config-xo-react": "^0.14.0",
-    "eslint-plugin-react": "^7.3.0",
-    "micro-dev": "^2.0.0",
-    "nyc": "^11.1.0",
-    "request-promise": "^4.2.1",
-    "test-listen": "^1.0.2",
-    "xo": "^0.20.0"
+    "eslint-plugin-react": "^7.11.1",
+    "micro-dev": "^2.2.2",
+    "nyc": "^11.9.0",
+    "request-promise": "^4.2.2",
+    "test-listen": "^1.1.0",
+    "xo": "^0.20.3"
   },
   "dependencies": {
-    "codecov": "^3.0.0",
+    "codecov": "^3.1.0",
     "isomorphic-fetch": "^2.2.1",
-    "micro": "^9.0.1",
-    "microrouter": "^3.0.0"
+    "micro": "^9.3.3",
+    "microrouter": "^3.1.3"
   }
 }
