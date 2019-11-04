@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.11.1",
     "micro-dev": "^2.2.2",
     "nyc": "^11.9.0",
-    "request-promise": "^4.2.2",
+    "request-promise": "^4.2.5",
     "test-listen": "^1.1.0",
     "xo": "^0.20.3"
   },
