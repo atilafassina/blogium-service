@@ -36,7 +36,7 @@
     "xo": "^0.20.3"
   },
   "dependencies": {
-    "codecov": "^3.1.0",
+    "codecov": "^3.6.3",
     "isomorphic-fetch": "^2.2.1",
     "micro": "^9.3.3",
     "microrouter": "^3.1.3"
